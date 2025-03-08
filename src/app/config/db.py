@@ -16,7 +16,7 @@ class DbConfig(BaseSettings):
     host: str = os.getenv('DB_HOST', '43.159.143.161')
     port: str = os.getenv('DB_PORT', '3306')
     uname: str = os.getenv('DB_USERNAME', 'root')
-    password: str = os.getenv('DB_PASSWORD', 'OzouDfAa519950023Gh8ZF')
+    password: str = os.getenv('DB_PASSWORD', '')
     database: str = os.getenv('DB_DATABASE', 'sm')
     charset: str = os.getenv('DB_CHARSET', 'utf8')
     table_name_prefix: str = os.getenv('DB_TABLE_NAME_PREFIX', '')
