@@ -13,11 +13,11 @@ class DbConfig(BaseSettings):
     :version: 0.1
     """
     driver: str = os.getenv('DB_DRIVER', 'mysql+pymysql')
-    host: str = os.getenv('DB_HOST', '35.226.3.0')
+    host: str = os.getenv('DB_HOST', '43.159.143.161')
     port: str = os.getenv('DB_PORT', '3306')
     uname: str = os.getenv('DB_USERNAME', 'root')
-    password: str = os.getenv('DB_PASSWORD', 'admin')
-    database: str = os.getenv('DB_DATABASE', 'my_database')
+    password: str = os.getenv('DB_PASSWORD', 'OzouDfAa519950023Gh8ZF')
+    database: str = os.getenv('DB_DATABASE', 'sm')
     charset: str = os.getenv('DB_CHARSET', 'utf8')
     table_name_prefix: str = os.getenv('DB_TABLE_NAME_PREFIX', '')
     echo: bool = os.getenv('DB_ECHO', True)
@@ -61,6 +61,7 @@ class DbUtils(object):
     def __init__(self, config: DbConfig = None):
         if not config:
             config = self.default_config
+        print(config.password)
         self.engine, self.sess = self._create_scoped_session(config)
 
     def __del__(self):

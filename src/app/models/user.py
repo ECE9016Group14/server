@@ -15,4 +15,4 @@ class User(Base):
     remark: Mapped[str] = mapped_column('Remark', String(1000))
     create_time: Mapped[datetime.datetime] = mapped_column('CreateTime', DateTime, nullable=False, server_default=func.now())
     email: Mapped[str] = mapped_column('Email', String(500), nullable=False)
-    password: Mapped[Optional[str]] = mapped_column('Pwd', String(500))
+    password: Mapped[Optional[str]] = mapped_column('Password', String(500))

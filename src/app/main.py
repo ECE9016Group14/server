@@ -4,18 +4,18 @@ import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
-
+environment = os.getenv('ENV', 'product')
+print(f'pwd: {os.getcwd()}, env: {environment}')
+if not os.path.exists(f'./src/{environment}.env'):
+    os.chdir("../")
+load_dotenv(f'./src/{environment}.env')
 from app.models.response import CommRes
 from app.routers.post_router import post_router
 from app.routers.comment_router import comment_router
 from app.routers.like_router import like_router
 from app.routers.user_router import user_router
 
-environment = os.getenv('ENV', 'product')
-print(f'pwd: {os.getcwd()}, env: {environment}')
-if not os.path.exists(f'./src/{environment}.env'):
-    os.chdir("../")
-load_dotenv(f'./src/{environment}.env')
+
 
 from fastapi.middleware.cors import CORSMiddleware
 from src.app.routers.cryptocurrencies_api import crypto_currencies_router
