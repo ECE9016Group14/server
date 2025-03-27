@@ -2,7 +2,7 @@ from sqlalchemy import String, Integer, DateTime, Text, func, BINARY, ForeignKey
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped, relationship
 import datetime
 
-from app.models.post import Base
+from app.models import Base
 
 
 class Comment(Base):

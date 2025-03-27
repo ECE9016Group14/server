@@ -2,8 +2,8 @@ from sqlalchemy import String, Integer, DateTime, Text, func, BINARY
 from sqlalchemy.orm import DeclarativeBase, mapped_column, Mapped
 import datetime
 
-class Base(DeclarativeBase):
-    pass
+from app.models import Base
+
 
 class Post(Base):
     __tablename__ = 'Posts'

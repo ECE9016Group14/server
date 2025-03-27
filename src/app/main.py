@@ -6,9 +6,10 @@ from fastapi import FastAPI
 from starlette.responses import JSONResponse
 
 from app.models.response import CommRes
-from app.routers.PostRouter import post_router
+from app.routers.post_router import post_router
 from app.routers.comment_router import comment_router
 from app.routers.like_router import like_router
+from app.routers.user_router import user_router
 
 environment = os.getenv('ENV', 'product')
 print(f'pwd: {os.getcwd()}, env: {environment}')
@@ -38,6 +39,7 @@ app.include_router(crypto_currencies_router)
 app.include_router(post_router)
 app.include_router(comment_router)
 app.include_router(like_router)
+app.include_router(user_router)
 
 @app.get("/")
 async def root():

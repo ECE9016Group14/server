@@ -13,11 +13,11 @@ class DbConfig(BaseSettings):
     :version: 0.1
     """
     driver: str = os.getenv('DB_DRIVER', 'mysql+pymysql')
-    host: str = os.getenv('DB_HOST', '43.159.143.161')
+    host: str = os.getenv('DB_HOST', '35.226.3.0')
     port: str = os.getenv('DB_PORT', '3306')
     uname: str = os.getenv('DB_USERNAME', 'root')
-    password: str = os.getenv('DB_PASSWORD', 'OzouDfAa519950023Gh8ZF')
-    database: str = os.getenv('DB_DATABASE', 'sm')
+    password: str = os.getenv('DB_PASSWORD', 'admin')
+    database: str = os.getenv('DB_DATABASE', 'my_database')
     charset: str = os.getenv('DB_CHARSET', 'utf8')
     table_name_prefix: str = os.getenv('DB_TABLE_NAME_PREFIX', '')
     echo: bool = os.getenv('DB_ECHO', True)

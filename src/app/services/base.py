@@ -48,7 +48,7 @@ class BaseService(object):
             return None
         self.set_model_by_schema(schema, model)
         self.dao.update(model)
-        return schema
+        return self.model2schema(model, self.schema)
 
     def update_list(self, schema_list: List[schema]):
         model_list = []
