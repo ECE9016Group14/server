@@ -1,1 +1,12 @@
-
+# dev-service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: dev-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: dev-backend
+  ports:
+    - port: 80
+      targetPort: 8000
