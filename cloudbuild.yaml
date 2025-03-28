@@ -3,4 +3,7 @@ steps:
     args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v1', '.']
 images:
   - 'gcr.io/airy-charge-454919-p2/social-backend-app:v1'
+build:
+  service_account: '905254963235-compute@developer.gserviceaccount.com'
+  logs_bucket: 'gs://backend_dev_logs'
 
