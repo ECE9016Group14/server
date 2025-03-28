@@ -3,7 +3,11 @@ steps:
     args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v1', '.']
 images:
   - 'gcr.io/airy-charge-454919-p2/social-backend-app:v1'
-build:
-  service_account: '905254963235-compute@developer.gserviceaccount.com'
-  logs_bucket: 'gs://backend_dev_logs'
+
+options:
+  logging: 'CLOUD_LOGGING_ONLY'  # This sends logs to Cloud Logging
+  # If you want to use a custom service account for the build, you can use the 'service_account' field like this:
+  # service_account: 'your-service-account@your-project.iam.gserviceaccount.com'
+  default_logs_bucket_behavior: 'REGIONAL_USER_OWNED_BUCKET'  # Optional if you want to use a regionally owned bucket for logs
+
 
