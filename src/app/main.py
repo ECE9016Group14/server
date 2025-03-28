@@ -29,6 +29,7 @@ origins = [
 ]
 @app.on_event("startup")
 async def startup_event():
+    print("test the event is working")
     DbUtils()  # This will print "connect to db: ..." in the logs
 
 
