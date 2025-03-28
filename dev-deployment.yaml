@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dev-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dev-backend
+  template:
+    metadata:
+      labels:
+        app: dev-backend
+    spec:
+      containers:
+        - name: backend-container
+          image: gcr.io/airy-charge-454919-p2/social-backend-app:v2
+          ports:
+            - containerPort: 8000
+          envFrom:
+            - secretRef:
+                name: db-credentials-dev

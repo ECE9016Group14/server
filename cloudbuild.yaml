@@ -1,8 +1,8 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v1', '.']
+    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v2', '.']
 images:
-  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v1'
+  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v2'
 
 options:
   logging: 'CLOUD_LOGGING_ONLY'  # This sends logs to Cloud Logging
