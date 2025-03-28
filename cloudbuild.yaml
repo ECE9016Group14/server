@@ -1,6 +1,6 @@
 steps:
-    - name: 'gcr.io/cloud-builders/docker'
-          args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v1', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v1', '.']
+images:
+  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v1'
 
-          images:
-              - 'gcr.io/airy-charge-454919-p2/social-backend-app:v1'
