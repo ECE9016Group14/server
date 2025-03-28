@@ -1,14 +1,14 @@
 import os
-
+from db import DbUtils
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from starlette.responses import JSONResponse
-environment = os.getenv('ENV', 'product')
-print(f'pwd: {os.getcwd()}, env: {environment}')
-if not os.path.exists(f'./src/{environment}.env'):
-    os.chdir("../")
-load_dotenv(f'./src/{environment}.env')
+# environment = os.getenv('ENV', 'product')
+# print(f'pwd: {os.getcwd()}, env: {environment}')
+# if not os.path.exists(f'./src/{environment}.env'):
+#     os.chdir("../")
+# load_dotenv(f'./src/{environment}.env')
 from app.models.response import CommRes
 from app.routers.post_router import post_router
 from app.routers.comment_router import comment_router
@@ -27,6 +27,10 @@ origins = [
     "http://host.docker.internal:5173",
     "http://localhost:53",
 ]
+@app.on_event("startup")
+async def startup_event():
+    DbUtils()  # This will print "connect to db: ..." in the logs
+
 
 app.add_middleware(
     CORSMiddleware,
@@ -58,5 +62,6 @@ async def default_exception_handler(request, exc):
             msg=f'{exc}',
         ).dict(),
     )
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=8000)
+# if __name__ == "__main__":
+#     uvicorn.run(app, host="127.0.0.1", port=8000)
+
