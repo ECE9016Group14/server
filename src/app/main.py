@@ -1,5 +1,5 @@
 import os
-from db import DbUtils
+from config.db import DbUtils
 import uvicorn
 from dotenv import load_dotenv
 from fastapi import FastAPI
