@@ -12,11 +12,30 @@ spec:
       labels:
         app: dev-backend
     spec:
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloud-sql-proxy-secret # from "kubectl create secret generic cloud-sql-proxy-secret"
       containers:
         - name: backend-container
-          image: gcr.io/airy-charge-454919-p2/social-backend-app:v5
+          image: gcr.io/airy-charge-454919-p2/social-backend-app:v6
           ports:
             - containerPort: 8000
           envFrom:
             - secretRef:
                 name: db-credentials-dev
+          # DB_HOST, DB_PORT, DB_USERNAME, DB_PASSWORD, DB_DATABASE now come from the secret
+          # which you changed to 127.0.0.1
+
+        - name: cloud-sql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.33.1
+          command:
+            - "/cloud_sql_proxy"
+            - "--instances=airy-charge-454919-p2:us-central1:mysql123=tcp:0.0.0.0:3306"
+            - "--credential_file=/secrets/service_account.json"
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: "/secrets"
+              readOnly: true
+          ports:
+            - containerPort: 3306
