@@ -1,13 +1,33 @@
 steps:
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v7', '.']
+    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v8', '.']
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/airy-charge-454919-p2/social-backend-app:v8']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'db_secret.yaml'
+      - '-f'
+      - 'dev-db-deployment.yaml'
+      - '-f'
+      - 'dev-db-service.yaml'
+      - '-f'
+      - 'dev-deployment.yaml'
+      - '-f'
+      - 'dev-service.yaml'
+    env:
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=dev-cluster'
+
 images:
-  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v7'
+  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v8'
 
 options:
-  logging: 'CLOUD_LOGGING_ONLY'  # This sends logs to Cloud Logging
-  # If you want to use a custom service account for the build, you can use the 'service_account' field like this:
-  # service_account: 'your-service-account@your-project.iam.gserviceaccount.com'
-  default_logs_bucket_behavior: 'REGIONAL_USER_OWNED_BUCKET'  # Optional if you want to use a regionally owned bucket for logs
+  logging: 'CLOUD_LOGGING_ONLY'
+  default_logs_bucket_behavior: 'REGIONAL_USER_OWNED_BUCKET'
+
 
 
