@@ -36,7 +36,7 @@ steps:
       - '-f'
       - 'prod-db-service.yaml'
       - '-f'
-      - 'prod-backend-deployment.yaml'
+      - 'prod-deployment.yaml'
       - '-f'
       - 'prod-service.yaml'
     env:
