@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prod-db-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prod-db
+  template:
+    metadata:
+      labels:
+        app: prod-db
+    spec:
+      nodeSelector:
+        role: database
+      volumes:
+        - name: cloudsql-instance-credentials
+          secret:
+            secretName: cloud-sql-proxy-secret
+      containers:
+        - name: cloud-sql-proxy
+          image: gcr.io/cloudsql-docker/gce-proxy:1.33.1
+          command:
+            - "/cloud_sql_proxy"
+            - "--instances=airy-charge-454919-p2:us-central1:mysql456=tcp:0.0.0.0:3306"
+            - "--credential_file=/secrets/service_account.json"
+          volumeMounts:
+            - name: cloudsql-instance-credentials
+              mountPath: "/secrets"
+              readOnly: true
+          ports:
+            - containerPort: 3306

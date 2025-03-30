@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prod-db-service
+spec:
+  type: ClusterIP
+  selector:
+    app: prod-db
+  ports:
+    - port: 3306
+      targetPort: 3306

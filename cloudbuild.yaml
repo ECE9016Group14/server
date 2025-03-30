@@ -1,10 +1,13 @@
 steps:
+  # Docker build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v8', '.']
+    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v9', '.']
 
+  # Docker push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/airy-charge-454919-p2/social-backend-app:v8']
+    args: ['push', 'gcr.io/airy-charge-454919-p2/social-backend-app:v9']
 
+  # Deploy to dev cluster
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
       - 'apply'
@@ -19,15 +22,30 @@ steps:
       - '-f'
       - 'dev-service.yaml'
     env:
-      - 'CLOUDSDK_COMPUTE_REGION=us-central1-a'
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
       - 'CLOUDSDK_CONTAINER_CLUSTER=dev-cluster'
 
+  # Deploy to prod cluster
+  - name: 'gcr.io/cloud-builders/kubectl'
+    args:
+      - 'apply'
+      - '-f'
+      - 'prod_db_secret.yaml'
+      - '-f'
+      - 'prod-db-deployment.yaml'
+      - '-f'
+      - 'prod-db-service.yaml'
+      - '-f'
+      - 'prod-backend-deployment.yaml'
+      - '-f'
+      - 'prod-service.yaml'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-east1-b'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=prod-cluster'
+
 images:
-  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v8'
+  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v9'
 
 options:
   logging: 'CLOUD_LOGGING_ONLY'
   default_logs_bucket_behavior: 'REGIONAL_USER_OWNED_BUCKET'
-
-
-
