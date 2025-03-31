@@ -25,6 +25,6 @@ spec:
             - secretRef:
                 name: db-credentials-dev
         - name: frontend-container
-          image: gcr.io/airy-charge-454919-p2/social-frontend-app:v2
+          image: us-central1-docker.pkg.dev/airy-charge-454919-p2/frontend/social-frontend-app:v2
           ports:
             - containerPort: 80

@@ -45,7 +45,7 @@ steps:
 
 images:
   - 'gcr.io/airy-charge-454919-p2/social-backend-app:v11'
-  - 'gcr.io/airy-charge-454919-p2/social-frontend-app:v2'
+  - 'us-central1-docker.pkg.dev/airy-charge-454919-p2/frontend/social-frontend-app:v2'
 
 options:
   logging: 'CLOUD_LOGGING_ONLY'
