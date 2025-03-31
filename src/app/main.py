@@ -24,8 +24,8 @@ app = FastAPI()
 origins = [
     "http://localhost.tiangolo.com",
     "https://localhost.tiangolo.com",
-    "http://host.docker.internal:5173",
     "http://localhost:53",
+    "*"
 ]
 @app.on_event("startup")
 async def startup_event():
@@ -40,6 +40,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 app.include_router(crypto_currencies_router)
 app.include_router(post_router)
 app.include_router(comment_router)
