@@ -6,21 +6,25 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: web
+      app: dev-combined-app
   template:
     metadata:
       labels:
-        app: web
+        app: dev-combined-app
     spec:
       containers:
-        - name: web-container
-          image: gcr.io/airy-charge-454919-p2/social-backend-app:v10
+        - name: backend-container
+          image: gcr.io/airy-charge-454919-p2/social-backend-app:v11
           ports:
             - containerPort: 8000
+          # Use environment variables and secrets as before
           env:
-            # Override DB_HOST so that the web app connects to the DB service internally
             - name: DB_HOST
               value: "dev-db-service"
           envFrom:
             - secretRef:
                 name: db-credentials-dev
+        - name: frontend-container
+          image: gcr.io/your-project-id/social-frontend-app:v1
+          ports:
+            - containerPort: 80

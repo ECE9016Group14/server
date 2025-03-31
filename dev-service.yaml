@@ -5,8 +5,8 @@ metadata:
 spec:
   type: LoadBalancer
   selector:
-    app: web
+    app: dev-combined-app
   ports:
     - protocol: TCP
       port: 80         # External port
-      targetPort: 8000 # Web container listens on 8000
+      targetPort: 80 # Web container listens on 80
