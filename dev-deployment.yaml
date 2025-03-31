@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dev-combined-app
+      app: web
   template:
     metadata:
       labels:
-        app: dev-combined-app
+        app: web
     spec:
       containers:
         - name: backend-container

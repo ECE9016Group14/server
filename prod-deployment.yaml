@@ -6,11 +6,11 @@ spec:
   replicas: 2
   selector:
     matchLabels:
-      app: prod-combined-app
+      app: prod-backend
   template:
     metadata:
       labels:
-        app: prod-combined-app
+        app: prod-backend
     spec:
       nodeSelector:
         role: web-server
