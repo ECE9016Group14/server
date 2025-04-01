@@ -1,11 +1,11 @@
 steps:
   # Docker build
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v11', '.']
+    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-backend-app:v12', '.']
 
   # Docker push
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/airy-charge-454919-p2/social-backend-app:v11']
+    args: ['push', 'gcr.io/airy-charge-454919-p2/social-backend-app:v12']
 
   # Deploy to dev cluster
   - name: 'gcr.io/cloud-builders/kubectl'
@@ -44,7 +44,7 @@ steps:
       - 'CLOUDSDK_CONTAINER_CLUSTER=prod-cluster'
 
 images:
-  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v11'
+  - 'gcr.io/airy-charge-454919-p2/social-backend-app:v12'
 
 options:
   logging: 'CLOUD_LOGGING_ONLY'
