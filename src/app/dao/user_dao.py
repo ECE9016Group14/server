@@ -8,7 +8,12 @@ class UserDao(BaseDao):
     def __init__(self):
         self.Model = User
         super().__init__()
-
+    def update_remark(self, user_id:str,remaek:str):
+        with Session(self.db.engine) as sess:
+            user = sess.query(User).filter(User.id == user_id).first()
+            user.remark = remaek
+            sess.commit()
+            return True
     def update(self, model: "Model"):
         try:
             existing = self.db.sess.get(self.Model, model.id)

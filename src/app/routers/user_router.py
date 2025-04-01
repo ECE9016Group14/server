@@ -43,6 +43,10 @@ def get_user(user_id: str, service: UserService = Depends()):
 @user_router.put("/", response_model=CommRes, status_code=status.HTTP_200_OK)
 def update_user(user_update: UserSchema, service: UserService = Depends()):
     return CommRes.success(service.update(user_update))
+@user_router.put("/remark", response_model=CommRes, status_code=status.HTTP_200_OK)
+def update_remark( remark:str,current_user: UserSchema = Security(get_current_active_user),service: UserService = Depends()):
+    return CommRes.success(service.update_remark(current_user.id,remark))
+
 
 @user_router.delete("/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(user_id: str,service: UserService = Depends()):

@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend-container
-          image: gcr.io/airy-charge-454919-p2/social-backend-app:v12
+          image: gcr.io/airy-charge-454919-p2/social-backend-app:v13
           ports:
             - containerPort: 8000
           # Use environment variables and secrets as before

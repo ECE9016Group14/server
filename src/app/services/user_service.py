@@ -46,6 +46,8 @@ class UserService(BaseService):
     def update(self, user: UserSchema)->UserSchema:
         user.password=get_password_hash(user.password)
         return super().update(user)
+    def update_remark(self, user_id:str,remark:str)->UserSchema:
+        return self.dao.update_remark(user_id,remark)
     def get(self, id: str) -> UserSchema:
         res:UserSchema=super().get(id)
         res.password=None
