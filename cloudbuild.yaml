@@ -7,12 +7,6 @@ steps:
   - name: 'gcr.io/cloud-builders/docker'
     args: ['push', 'gcr.io/airy-charge-454919-p2/social-backend-app:v11']
 
-  # --- Build and push Frontend ---
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/airy-charge-454919-p2/social-frontend-app:v3', '../client']
-  - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/airy-charge-454919-p2/social-frontend-app:v3']
-
   # Deploy to dev cluster
   - name: 'gcr.io/cloud-builders/kubectl'
     args:
@@ -51,7 +45,6 @@ steps:
 
 images:
   - 'gcr.io/airy-charge-454919-p2/social-backend-app:v11'
-  - 'gcr.io/airy-charge-454919-p2/social-frontend-app:v3'
 
 options:
   logging: 'CLOUD_LOGGING_ONLY'
