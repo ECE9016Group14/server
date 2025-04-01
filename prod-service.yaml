@@ -1,4 +1,3 @@
-# prod-service.yaml
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,5 +7,11 @@ spec:
   selector:
     app: prod-backend
   ports:
-    - port: 80
+    - name: frontend
+      protocol: TCP
+      port: 80         # For frontend traffic
       targetPort: 80
+    - name: backend
+      protocol: TCP
+      port: 8080       # For backend traffic
+      targetPort: 8000
