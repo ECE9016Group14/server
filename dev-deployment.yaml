@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: backend-container
-          image: gcr.io/airy-charge-454919-p2/social-backend-app:v13
+          image: gcr.io/airy-charge-454919-p2/social-backend-app:v14
           ports:
             - containerPort: 8000
           # Use environment variables and secrets as before
@@ -25,6 +25,6 @@ spec:
             - secretRef:
                 name: db-credentials-dev
         - name: frontend-container
-          image: gcr.io/airy-charge-454919-p2/social-frontend-app:v4
+          image: gcr.io/airy-charge-454919-p2/social-frontend-app:v5
           ports:
             - containerPort: 80
