@@ -55,15 +55,23 @@ async def root():
 @app.get("/hello/{name}")
 async def say_hello(name: str):
     return {"message": f"Hello {name}"}
+@app.get("/hello/{name}")
+async def say_hello(name: str):
+    return {"message": f"Hello {name}"}
+    
 @app.exception_handler(Exception)
 async def default_exception_handler(request, exc):
-    return JSONResponse(
+    response = JSONResponse(
         status_code=200,
         content=CommRes(
             errorcode=1,
             msg=f'{exc}',
         ).dict(),
     )
+    response.headers["Access-Control-Allow-Origin"] = ",".join(origins)
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
 # if __name__ == "__main__":
 #     uvicorn.run(app, host="127.0.0.1", port=8000)
 
