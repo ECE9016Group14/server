@@ -25,6 +25,6 @@ spec:
             - secretRef:
                 name: db-credentials-dev
         - name: frontend-container
-          image: gcr.io/airy-charge-454919-p2/social-frontend-app:v5
+          image: gcr.io/airy-charge-454919-p2/social-frontend-app:v6
           ports:
             - containerPort: 80
